@@ -1,48 +1,35 @@
 
+let filters = Array.from(document.querySelectorAll(".filter"));
+let uniqueFilters = new Set(filters);
 
-// let filterSelected = document.querySelector(".filter__selected");
-// let filters = Array.from(document.querySelectorAll(".filter"));
-// let uniqueFilters = new Set(filters);
+uniqueFilters.forEach((filter) => {
+  filter.addEventListener("click", async function () {
+    uniqueFilters.forEach((f) => {
+      f.classList.remove("filter__selected");
+    });
+    this.classList.add("filter__selected");
 
+    let displayImages = parseInt(this.getAttribute("data-category-id"));
 
+    const allImages = await getImagesList();
 
-// uniqueFilters.forEach((filter) => {
-//   filter.addEventListener("click", function () {
-//     uniqueFilters.forEach((filter) => {
-//       filter.classList.remove("filter__selected");
-//     });
-//     this.classList.add("filter__selected");
-//     // function: displayImages
-//     const displayImages = async (categoryId) => {
-//       // console.log(displayImages)
-//       // get images
-//       const allImages = await getImagesList()
-//       let filteredImages = [];
-//       console.log(filteredImages)
+    let filteredImages = [];
 
-//       // if all images, set filteredImages to allImages
-//       if (displayImages === 0) {
-//         filteredImages = allImages;
-//       } else {  // else filter it
-//         allImages.forEach((image) => {
-//           if (image.displayImages === displayImages) {
-//             filteredImages.push(image);
-            
-//           } else {
-//             delete image.displayImages;
-//           }
-//         });
-//       }
-//       // console.log(filteredImages);
+    if (displayImages === 0) {
+      filteredImages = allImages;
+    } else {
+      filteredImages = allImages.filter((image) => image.categoryId === displayImages);
+    }
 
-//       // display images
-//     }
+    document.querySelector(".gallery").innerHTML = "";
 
-//     displayImages()
-
-//   });
-// });
-
-
-
-
+    filteredImages.forEach((image) => {
+      let article = new Article(image);
+      document.querySelector(".gallery").innerHTML += `
+        <figure>
+          <img src="${article.imageUrl}" alt="${article.title}">
+          <figcaption>${article.title}</figcaption>
+        </figure>`;
+    });
+  });
+});
