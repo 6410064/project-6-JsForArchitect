@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
-<body>
-    <header>
+<body class="body__log">
+    <header class="header__log">
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
             <ul>
@@ -26,19 +26,19 @@
         </nav>
     </header>
     <section class="section__log ">
-        <h2 class="section__log__title">Log In</h2>
-        <form action="#" method="post">
+        <h2 id="section__log__title">Log In</h2>
+        <form action="#" method="post" id="log__form">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="log__email">
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" minlength="6" maxlength="32" required>
-            <input type="submit" value="Se connecter">
+            <input type="password" name="password" id="log__password" minlength="6" maxlength="32" required>
+            <input type="submit" value="Se connecter" id="log__button">
         </form>
-        <p class="section__log__forgot__pass">Mot de passe oublié</p>
+        <p id="section__log__forgot__pass">Mot de passe oublié</p>
     </section>
-    <footer>
-        <p>Mentions Légales</p>
+    <footer class="footer__log">
+        <p id="footer__log__text">Mentions Légales</p>
     </footer>
+    <script src="./login.js"></script>
 </body>
-
 </html>
