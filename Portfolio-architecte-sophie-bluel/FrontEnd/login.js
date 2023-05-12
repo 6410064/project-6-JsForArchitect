@@ -1,7 +1,9 @@
-document.querySelector('#log__form input[type="submit"]').addEventListener("click", function () {
+document.querySelector('#log__form').addEventListener("submit", function (event) {
+    event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
+
     let valid = true;
 
-    for (let input of document.querySelectorAll(".form input, .form label")) {
+    for (let input of document.querySelectorAll(".section__log input")) {
         valid = valid && input.reportValidity();
 
         if (!valid) {
@@ -10,8 +12,8 @@ document.querySelector('#log__form input[type="submit"]').addEventListener("clic
     }
 
     if (valid) {
-        let email = document.querySelector('#email').value;
-        let password = document.querySelector('#password').value;
+        let email = document.querySelector('#log__email').value;
+        let password = document.querySelector('#log__password').value;
 
         // Préparation des données à envoyer dans la requête
         let data = {
@@ -29,7 +31,9 @@ document.querySelector('#log__form input[type="submit"]').addEventListener("clic
         })
             .then(response => response.json())
             .then(result => {
+                console.log(result);
                 if (result.success) {
+                    console.log("Redirection vers index.html");
                     // Redirection vers le site après la validation des identifiants
                     window.location.href = "index.html";
                 } else {

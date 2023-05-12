@@ -145,7 +145,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 109px 0
 }
 
 section {
@@ -314,6 +314,53 @@ footer nav ul {
 	background-color: #1D6154;
 }
 
+/*edit section*/
+
+.header__edit {
+	justify-content: center;
+	display: flex;
+	position: absolute;
+	height: 59px;
+	background-color: black;
+	color: #FFFFFF;
+	top: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	gap: 21px;
+}
+
+.edit__style {
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16px;
+	letter-spacing: 0em;
+
+
+}
+
+#header__btn__publish__changes {
+	background: #FFFFFF;
+	border-radius: 60px;
+	padding: 11px 23px;
+}
+
+.section__title__edit {
+	color: black;
+	margin-left: 31px;
+}
+
+.section__link__edit {
+	margin-left: 10%;
+	position: relative;
+	top: 15px;
+}
+/*icon edit*/
+.fa-pen-to-square {
+	margin-right: 10px;
+}
+
 /*log in page*/
 .body__log {
 	background: #f9f9f4;
@@ -342,7 +389,8 @@ footer nav ul {
 	flex-direction: column;
 	text-align: left;
 }
-#log__email{
+
+#log__email {
 	margin-bottom: 30px;
 	width: 379px;
 	height: 50px;
@@ -350,6 +398,7 @@ footer nav ul {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #log__password {
 	width: 379px;
 	height: 50px;
@@ -357,12 +406,14 @@ footer nav ul {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #log__button {
 	height: 36px;
-    font-size: 1.2em;
-    border: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 .footer__log {
 	background-color: #FFFFFF;
 	width: 100%;
@@ -385,4 +436,3 @@ footer nav ul {
 #section__log__forgot__pass {
 	text-decoration-line: underline;
 }
-
