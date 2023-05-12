@@ -21,7 +21,7 @@
 	<header>
 
 		<div class="header__edit">
-			<a class="header__link__edit edit__style">
+			<a href="#modal" class="header__link__edit edit__style modal-js">
 				<i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
 			<button id="header__btn__publish__changes">publier les changements</button>
 		</div>
@@ -33,7 +33,7 @@
 				<li>contact</li>
 				<li>login</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram">
-					</li>
+				</li>
 			</ul>
 		</nav>
 
@@ -42,7 +42,7 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<a class="section__link__edit edit__style">
+				<a href="#modal" class="section__link__edit edit__style modal-js">
 					<i class="fa-regular fa-pen-to-square"></i>modifier</a>
 			</figure>
 			<article>
@@ -57,8 +57,8 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets <a class="section__title__edit edit__style">
-				<i class="fa-regular fa-pen-to-square"></i>modifier</a> </h2>
+			<h2>Mes Projets <a href="#modal" class="section__title__edit edit__style modal-js">
+					<i class="fa-regular fa-pen-to-square"></i>modifier</a> </h2>
 			<ul class="article__filter">
 				<li class="filter filter__selected" data-category-id="0">Tous</li>
 				<li class="filter" data-category-id="1">Objets</li>
@@ -83,6 +83,11 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
+		<aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
+			style="display: none;">
+			<h3 id="title__modal">Galerie photo</h3>
+			<button id="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+		</aside>
 	</main>
 
 	<footer>
@@ -95,6 +100,7 @@
 	<script src="./login.js"></script>
 	<script src="./api.js"></script>
 	<script src="./filter.js"></script>
+	<script src="./modal.js"></script>
 </body>
 
 </html>
