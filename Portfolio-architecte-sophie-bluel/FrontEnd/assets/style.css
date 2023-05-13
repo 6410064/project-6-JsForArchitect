@@ -362,12 +362,11 @@ footer nav ul {
 
 /*modal*/
 .modal__style {
-	padding: 0 100px 0 100px;
-	top: 25%;
-	left: 25%;
 	position: fixed;
-	height: 731px;
-	width: 630px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 60px 100px 48px 100px;
 	border-radius: 10px;
 	border: 1px solid black;
 	background-color: white;
@@ -396,26 +395,50 @@ footer nav ul {
 	margin-left: 100p;
 	border: none;
 	background-color: #FFFFFF;
-	right: -106%;
-	position: relative;
-	top: -14%;
+	right: 9%;
+	position: absolute;
+	top: 5%;
 
 }
 
-#mobal__btn__add__picture {
+#modal__btn__add__picture {
 	height: 36px;
 }
 
 #modal__container__edit {
-	height: 400px;
-	width: 100%;
-	background-color: brown;
-
+	height: 500px;
+	width: 400px;
+	border-bottom: solid 1px #B3B3B3;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	gap: 6px;
 }
 
-#mobal__container__buttons {
+#modal__container__edit figure {
+
 	display: flex;
 	flex-direction: column;
+	
+	justify-content: center;
+	align-items: center;
+}
+
+
+#modal__container__edit img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+
+#modal__container__buttons {
+	display: flex;
+	flex-direction: column;
+}
+
+#modal__btn__delete__picture {
+	border: none;
+	background-color: white;
 }
 
 #modal__picture {}

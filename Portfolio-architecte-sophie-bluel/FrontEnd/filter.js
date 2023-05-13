@@ -26,7 +26,7 @@ const displayImages = async (categoryId) => {
   if (categoryId === 0) {
     filteredImages = allImages;
   } else {
-    filteredImages = allImages.filter((image) => image.categoryId === categoryId);
+    filteredImages = allImages.filter((image) => image.categoryId);
   }
 
   document.querySelector(".gallery").innerHTML = "";

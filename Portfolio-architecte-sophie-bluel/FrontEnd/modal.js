@@ -1,5 +1,5 @@
+/* open-close modal*/
 let modal = null;
-
 const openModal = function (e) {
     e.preventDefault();
     const target = document.querySelector(e.target.getAttribute('href'));
@@ -19,3 +19,31 @@ const closeModal = function (e) {
 document.querySelectorAll('.modal-js').forEach(a => {
     a.addEventListener('click', openModal);
 });
+
+/*display articles in modal*/
+
+const displayImagesInModal = async () => {
+    const allImages = await getImagesList();
+
+    const modalContainer = document.querySelector("#modal__container__edit");
+    modalContainer.innerHTML = "";
+
+    allImages.forEach((image) => {
+        const figure = document.createElement('figure');
+        const img = document.createElement('img');
+        const figcaption = document.createElement('figcaption');
+
+        img.src = image.imageUrl;
+        img.alt = image.title;
+        figcaption.textContent = 'éditer';
+
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+
+        modalContainer.appendChild(figure);
+    });
+};
+
+displayImagesInModal();
+
+

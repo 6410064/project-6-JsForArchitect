@@ -20,6 +20,7 @@ document.querySelector('#log__form').addEventListener("submit", function (event)
             email: email,
             password: password
         };
+        console.log(data);
 
         // Envoi de la requête POST à l'API
         fetch('http://localhost:5678/api/users/login', {
