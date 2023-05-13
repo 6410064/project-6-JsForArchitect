@@ -362,20 +362,20 @@ footer nav ul {
 
 /*modal*/
 .modal__style {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 60px 100px 48px 100px;
-	border-radius: 10px;
-	border: 1px solid black;
-	background-color: white;
-	justify-content: center;
-	flex-direction: column;
-	box-sizing: border-box;
+    position: fixed;
+	height: 790px;
+    width: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px 100px 48px 100px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    box-sizing: border-box;
 }
 
-#title__modal {
+.title__modal {
 	margin-bottom: 46px;
 	font-family: Work Sans;
 	font-size: 26px;
@@ -405,7 +405,7 @@ footer nav ul {
 
 }
 
-#js-modal-close {
+.js-modal-close {
 	cursor: pointer;
 	height: 20px;
 	width: 20px;
@@ -417,9 +417,12 @@ footer nav ul {
 	top: 5%;
 
 }
+.size__btn {
+	height: 36px;
+}
 
 #modal__btn__add__picture {
-	height: 36px;
+	
 	cursor: pointer;
 }
 #modal__btn__delete__picture {
@@ -456,9 +459,20 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 }
-
-
-
+/* modal form*/
+#modal__gallery2 {
+	flex-direction: column;
+	align-items: center;
+	
+}
+#modal__form {
+	display: flex;
+	flex-direction: column;
+}
+/*icon for add pictures*/
+.fa-image {
+	font-size: 50px;
+}
 /*login.html*/
 .body__log {
 	background: #f9f9f4;
@@ -504,7 +518,7 @@ footer nav ul {
 }
 
 #log__button {
-	height: 36px;
+	
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);

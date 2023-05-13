@@ -5,7 +5,7 @@ const openModal = function (e) {
     const target = document.querySelector(e.target.getAttribute('href'));
     target.style.display = 'flex';
     modal = target;
-    const buttonClose = modal.querySelector('#js-modal-close');
+    const buttonClose = modal.querySelector('.js-modal-close');
     buttonClose.addEventListener('click', closeModal);
 };
 
@@ -58,8 +58,6 @@ console.log(deleteArticleIcon)
 const deleteArticleButton = document.getElementById('modal__btn__delete__picture')
 const modalContainer = document.querySelector("#modal__container__edit");
 
-
-
 modalContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("fa-trash-can")) {
         event.target.parentNode.remove();
@@ -71,3 +69,5 @@ deleteArticleButton.addEventListener('click', function () {
         modalContainer.removeChild(modalContainer.firstChild);
     }
 });
+
+/*add pictures */ 
