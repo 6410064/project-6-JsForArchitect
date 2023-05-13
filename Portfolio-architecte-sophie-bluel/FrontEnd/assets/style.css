@@ -384,8 +384,23 @@ footer nav ul {
 	text-align: center;
 }
 
+/*icon modify*/
 .fa-xmark {
 	position: relative;
+}
+
+/*icon delete*/
+.fa-trash-can {
+	padding: 3px 1px 0px 1px;
+	top: -67%;
+    position: relative;
+    text-align: center;
+    background-color: black;
+    height: 17px;
+    width: 17px;
+    color: #FFFFFF;
+    right: -29%;
+    
 }
 
 #js-modal-close {
@@ -419,7 +434,7 @@ footer nav ul {
 
 	display: flex;
 	flex-direction: column;
-	
+
 	justify-content: center;
 	align-items: center;
 }
@@ -439,6 +454,7 @@ footer nav ul {
 #modal__btn__delete__picture {
 	border: none;
 	background-color: white;
+	color: #D65353;
 }
 
 #modal__picture {}

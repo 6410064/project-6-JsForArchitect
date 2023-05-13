@@ -1,4 +1,3 @@
-/* open-close modal*/
 let modal = null;
 const openModal = function (e) {
     e.preventDefault();
@@ -32,18 +31,21 @@ const displayImagesInModal = async () => {
         const figure = document.createElement('figure');
         const img = document.createElement('img');
         const figcaption = document.createElement('figcaption');
+        const deleteIcon = document.createElement('i');
 
         img.src = image.imageUrl;
         img.alt = image.title;
+
+        deleteIcon.classList.add('fa-regular', 'fa-trash-can');
+
         figcaption.textContent = 'éditer';
 
         figure.appendChild(img);
         figure.appendChild(figcaption);
+        figure.appendChild(deleteIcon);
 
         modalContainer.appendChild(figure);
     });
 };
 
 displayImagesInModal();
-
-
