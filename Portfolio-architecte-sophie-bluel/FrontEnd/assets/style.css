@@ -355,7 +355,7 @@ footer nav ul {
 	position: relative;
 	top: 15px;
 }
-
+/*icon modify*/
 .fa-pen-to-square {
 	margin-right: 10px;
 }
@@ -376,7 +376,7 @@ footer nav ul {
 }
 
 #title__modal {
-
+	margin-bottom: 46px;
 	font-family: Work Sans;
 	font-size: 26px;
 	font-weight: 400;
@@ -384,23 +384,25 @@ footer nav ul {
 	text-align: center;
 }
 
-/*icon modify*/
+/*icon 'X' for close window*/
 .fa-xmark {
 	position: relative;
+	cursor: pointer;
 }
 
 /*icon delete*/
 .fa-trash-can {
+	cursor: pointer;
 	padding: 3px 1px 0px 1px;
 	top: -67%;
-    position: relative;
-    text-align: center;
-    background-color: black;
-    height: 17px;
-    width: 17px;
-    color: #FFFFFF;
-    right: -29%;
-    
+	position: relative;
+	text-align: center;
+	background-color: black;
+	height: 17px;
+	width: 17px;
+	color: #FFFFFF;
+	right: -67%;
+
 }
 
 #js-modal-close {
@@ -418,6 +420,13 @@ footer nav ul {
 
 #modal__btn__add__picture {
 	height: 36px;
+	cursor: pointer;
+}
+#modal__btn__delete__picture {
+	border: none;
+	background-color: white;
+	color: #D65353;
+	cursor: pointer;
 }
 
 #modal__container__edit {
@@ -434,9 +443,6 @@ footer nav ul {
 
 	display: flex;
 	flex-direction: column;
-
-	justify-content: center;
-	align-items: center;
 }
 
 
@@ -451,18 +457,11 @@ footer nav ul {
 	flex-direction: column;
 }
 
-#modal__btn__delete__picture {
-	border: none;
-	background-color: white;
-	color: #D65353;
-}
 
-#modal__picture {}
 
 /*login.html*/
 .body__log {
 	background: #f9f9f4;
-
 }
 
 .header__log {
@@ -475,7 +474,6 @@ footer nav ul {
 	flex-direction: column;
 	align-items: center;
 	margin-top: 100px;
-
 }
 
 #section__log__title {

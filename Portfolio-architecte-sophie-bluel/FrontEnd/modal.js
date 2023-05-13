@@ -1,3 +1,4 @@
+/*open-close modal*/ 
 let modal = null;
 const openModal = function (e) {
     e.preventDefault();
@@ -49,3 +50,24 @@ const displayImagesInModal = async () => {
 };
 
 displayImagesInModal();
+
+/*function for delete articles */
+
+const deleteArticleIcon = document.getElementsByClassName('fa-trash-can')
+console.log(deleteArticleIcon)
+const deleteArticleButton = document.getElementById('modal__btn__delete__picture')
+const modalContainer = document.querySelector("#modal__container__edit");
+
+
+
+modalContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("fa-trash-can")) {
+        event.target.parentNode.remove();
+    }
+});
+
+deleteArticleButton.addEventListener('click', function () {
+    while (modalContainer.firstChild) {
+        modalContainer.removeChild(modalContainer.firstChild);
+    }
+});
