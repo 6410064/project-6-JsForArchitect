@@ -1,4 +1,3 @@
-
 let filters = Array.from(document.querySelectorAll(".filter"));
 let uniqueFilters = new Set(filters);
 
@@ -26,19 +25,18 @@ const displayImages = async (categoryId) => {
   if (categoryId === 0) {
     filteredImages = allImages;
   } else {
-    filteredImages = allImages.filter((image) => image.categoryId);
+    filteredImages = allImages.filter((image) => image.categoryId === categoryId);
   }
 
   document.querySelector(".gallery").innerHTML = "";
 
   filteredImages.forEach((image) => {
-    // let article = new Article(image);
     document.querySelector(".gallery").innerHTML += `
-        <figure>
-          <img src="${image.imageUrl}" alt="${image.title}">
-          <figcaption>${image.title}</figcaption>
-        </figure>`;
+      <figure>
+        <img src="${image.imageUrl}" alt="${image.title}">
+        <figcaption>${image.title}</figcaption>
+      </figure>`;
   });
-}
+};
 
-displayImages(0)
+displayImages(0);

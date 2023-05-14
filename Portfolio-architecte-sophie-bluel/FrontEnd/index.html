@@ -81,7 +81,7 @@
 		</section>
 		<aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
 			style="display: none;">
-			<div id="modal__gallery1" style="display: none;">
+			<div id="modal__gallery1" style="display: flex;">
 				<h3 class="title__modal">Galerie photo</h3>
 				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 				<div id="modal__container__edit">
@@ -91,7 +91,7 @@
 					<button id="modal__btn__delete__picture">Supprimer la galerie</button>
 				</div>
 			</div>
-			<div id="modal__gallery2" style="display: flex;">
+			<div id="modal__gallery2" style="display: none;">
 				<button class="arrow__left"><i class="fa-solid fa-arrow-left"></i></button>
 				<h3 class="title__modal">Ajout photo</h3>
 				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
@@ -109,8 +109,8 @@
 						<label for="title">Titre</label>
 						<input type="text" name="titre" id="title">
 
-						<label for="category">catégorie</label>
-						<input type="category" name="catégorie" id="category">
+						<label for="category">Catégorie</label>
+						<input type="category" name="Catégorie" id="category">
 							<div class="modal__btn__form__valid">
 						<input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider"></div>
 					</form>
