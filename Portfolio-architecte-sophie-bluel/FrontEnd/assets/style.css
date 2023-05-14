@@ -355,6 +355,7 @@ footer nav ul {
 	position: relative;
 	top: 15px;
 }
+
 /*icon modify*/
 .fa-pen-to-square {
 	margin-right: 10px;
@@ -362,17 +363,25 @@ footer nav ul {
 
 /*modal*/
 .modal__style {
-    position: fixed;
-	height: 790px;
-    width: 600px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 60px 100px 48px 100px;
-    border-radius: 10px;
-    border: 1px solid black;
-    background-color: white;
-    box-sizing: border-box;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 560px;
+	height: 700px;
+	width: 43.75%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 60px 7% 48px 7%;
+	border-radius: 10px;
+	border: 1px solid black;
+	background-color: white;
+	box-sizing: border-box;
+}
+
+#modal__gallery1 {
+	flex-direction: column;
 }
 
 .title__modal {
@@ -386,8 +395,20 @@ footer nav ul {
 
 /*icon 'X' for close window*/
 .fa-xmark {
-	position: relative;
+	font-size: 1.3rem;
 	cursor: pointer;
+}
+
+.js-modal-close {
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+	margin-left: 100p;
+	border: none;
+	background-color: #FFFFFF;
+	right: 9%;
+	position: absolute;
+	top: 5%;
 }
 
 /*icon delete*/
@@ -405,26 +426,15 @@ footer nav ul {
 
 }
 
-.js-modal-close {
-	cursor: pointer;
-	height: 20px;
-	width: 20px;
-	margin-left: 100p;
-	border: none;
-	background-color: #FFFFFF;
-	right: 9%;
-	position: absolute;
-	top: 5%;
-
-}
 .size__btn {
 	height: 36px;
 }
 
 #modal__btn__add__picture {
-	
+
 	cursor: pointer;
 }
+
 #modal__btn__delete__picture {
 	border: none;
 	background-color: white;
@@ -459,20 +469,90 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 }
+
 /* modal form*/
+
+.arrow__left {
+	position: absolute;
+    left: 4%;
+    top: 3%;
+    font-size: 1.3rem;
+    border: none;
+    background-color: white;
+}
+
 #modal__gallery2 {
 	flex-direction: column;
 	align-items: center;
-	
+	width: 100%;
 }
+
+#modal__container__form {
+	width: 100%;
+}
+
 #modal__form {
 	display: flex;
 	flex-direction: column;
 }
+
+#modal__form__add__pictures__style {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #E8F1F6;
+	color: #B9C5CC;
+	height: 170px;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
+#format__picture {
+	color: #444444;
+}
+
+.custom-file-upload {
+	margin: 21px 0 10px 0;
+	background: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	padding: 10px 33px;
+	cursor: pointer;
+
+}
+
+#title {
+	margin-bottom: 47px;
+	height: 50px;	
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#category {
+	margin-bottom: 47px;
+	height: 50px;
+	margin-bottom: 47px;
+	height: 50px;	
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modal__btn__form__valid {
+	border-top: 1px solid #B3B3B3;
+	display: flex;
+}
+
+#modal__form label {
+	margin-bottom: 10px;
+}
+
 /*icon for add pictures*/
 .fa-image {
 	font-size: 50px;
 }
+
 /*login.html*/
 .body__log {
 	background: #f9f9f4;
@@ -518,7 +598,7 @@ footer nav ul {
 }
 
 #log__button {
-	
+
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
