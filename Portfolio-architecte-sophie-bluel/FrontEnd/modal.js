@@ -1,12 +1,18 @@
-/*open-close modal*/ 
+/*open-close modal*/
 let modal = null;
 const openModal = function (e) {
     e.preventDefault();
     const target = document.querySelector(e.target.getAttribute('href'));
     target.style.display = 'flex';
     modal = target;
-    const buttonClose = modal.querySelector('.js-modal-close');
-    buttonClose.addEventListener('click', closeModal);
+    const buttonClose = modal.querySelectorAll('.js-modal-close');
+    buttonClose.forEach(button => {
+        button.addEventListener('click', closeModal);
+    });
+    // j'ai ciblé la gallery car l'opacité ne sappliquait pas sur images
+
+    document.body.classList.add('modal-open')
+
 };
 
 const closeModal = function (e) {
@@ -14,6 +20,13 @@ const closeModal = function (e) {
     modal.style.display = 'none';
     modal.removeEventListener('click', closeModal);
     modal = null;
+
+    document.body.classList.remove('modal-open');
+};
+const outsideClick = function (e) {
+    if (!modal.contains(e.target)) {
+        closeModal(e);
+    }
 };
 
 document.querySelectorAll('.modal-js').forEach(a => {
@@ -44,7 +57,7 @@ const displayImagesInModal = async () => {
         figure.appendChild(img);
         figure.appendChild(figcaption);
         figure.appendChild(deleteIcon);
-
+        figure.dataset.articleId = image.id;
         modalContainer.appendChild(figure);
     });
 };
@@ -57,17 +70,97 @@ const deleteArticleIcon = document.getElementsByClassName('fa-trash-can')
 console.log(deleteArticleIcon)
 const deleteArticleButton = document.getElementById('modal__btn__delete__picture')
 const modalContainer = document.querySelector("#modal__container__edit");
+const deleteArticleFromServer = async (articleId) => {
+    try {
+        const response = await fetch(`http://localhost:5678/api/works/${articleId}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
 
-modalContainer.addEventListener("click", function (event) {
-    if (event.target.classList.contains("fa-trash-can")) {
-        event.target.parentNode.remove();
+        if (response.ok) {
+            console.log('Article deleted from server');
+        } else {
+            console.error('Failed to delete article from server');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+modalContainer.addEventListener('click', function (event) {
+    if (event.target.classList.contains('fa-trash-can')) {
+        const articleElement = event.target.parentNode;
+        const articleId = articleElement.dataset.articleId;
+
+        deleteArticleFromServer(articleId); // Supprimer l'article du serveur
+
+        articleElement.remove(); // Supprimer l'article de l'interface utilisateur
     }
 });
+
 
 deleteArticleButton.addEventListener('click', function () {
     while (modalContainer.firstChild) {
         modalContainer.removeChild(modalContainer.firstChild);
     }
 });
+/*arrow ,preview, modal*/
+const arrow = document.querySelector('.arrow__left');
+const modalGallery1 = document.getElementById('modal__gallery1');
+const modalGallery2 = document.getElementById('modal__gallery2');
 
-/*add pictures */ 
+arrow.addEventListener('click', function () {
+    modalGallery1.style.display = 'flex';
+    modalGallery2.style.display = 'none';
+});
+/*add pictures */
+const btnOpenModal2 = document.getElementById('modal__btn__add__picture')
+btnOpenModal2.addEventListener('click', function () {
+    modalGallery1.style.display = 'none';
+    modalGallery2.style.display = 'flex';
+});
+
+const buttonSendWork = document.getElementById('modal__btn__valid__picture')
+buttonSendWork.addEventListener('click', async function (s) {
+    s.preventDefault();
+
+    // Récupérer les données du formulaire
+    const titleInput = document.getElementById('title');
+    const categoryInput = document.getElementById('category');
+    const addWork = document.getElementById('js-form-add-picture');
+
+    const title = titleInput.value;
+    const category = categoryInput.value;
+   
+
+    // Effectuer une requête API pour ajouter les photos
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('category', category);
+
+    // Ajouter chaque fichier image au formData
+  
+
+    try {
+        const response = await fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            // Les photos ont été ajoutées avec succès
+            // Réinitialiser le formulaire ou fermer la modale si nécessaire
+            titleInput.value = '';
+            categoryInput.value = '';
+            addWork.value = '';
+            closeModal(); // Fermer la modale après l'ajout des photos
+        } else {
+            // Gérer les erreurs de la requête
+            const errorData = await response.json();
+            console.error('Erreur lors de l\'ajout des photos:', errorData);
+        }
+    } catch (error) {
+        console.error('Erreur lors de la requête d\'ajout des photos:', error);
+    }
+});

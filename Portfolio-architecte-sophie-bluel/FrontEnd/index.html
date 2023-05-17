@@ -97,24 +97,34 @@
 				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 				<div id="modal__container__form">
 					<form action="#" method="post" id="modal__form">
-						<div id="modal__form__add__pictures__style"><i class="fa-sharp fa-regular fa-image"></i>
-							<label for="photos" class="custom-file-upload"><i class="fas fa-plus"></i>
-								Ajouter une photo
+						<div id="modal__form__add__pictures__style">
+							<i class="fa-sharp fa-regular fa-image"></i>
+							<label id="js-form-add-picture" for="photos" class="custom-file-upload">
+								<i class="fas fa-plus"></i> Ajouter une photo
 							</label>
-							<input type="file" name="photos" id="photos" accept="image/*" multiple
-								style="display: none;">
+							<input type="file" name="photos" id="photos" accept=".png, .jpg" multiple
+								style="display: none;" />
 							<p id="format__picture">jpg, png : 4mo max</p>
 						</div>
 
 						<label for="title">Titre</label>
-						<input type="text" name="titre" id="title">
+						<input type="text" name="titre" id="title" />
 
 						<label for="category">Catégorie</label>
-						<input type="category" name="Catégorie" id="category">
-							<div class="modal__btn__form__valid">
-						<input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider"></div>
+						<select name="Catégorie" id="category">
+							<option value=""></option>
+							<option value="Objets">Objets</option>
+							<option value="Appartements">Appartements</option>
+							<option value="Hôtels & restaurants">Hôtels & restaurants</option>
+						</select>
+						<div class="modal__btn__form__valid">
+							<input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider" />
+						</div>
 					</form>
 				</div>
+			</div>
+
+			</div>
 			</div>
 		</aside>
 
