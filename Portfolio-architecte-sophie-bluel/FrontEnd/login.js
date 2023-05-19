@@ -33,10 +33,10 @@ logForm.addEventListener("submit", function (event) {
     })
         .then(response => response.json())
         .then(result => {
-            console.log(result);
-            if (result.success) {
+
+            if (result.token) {
                 // Récupération du token
-                let token = result.token;
+                const token = result.token;
                 let userId = result.userId;
                 // Stockage du token dans le stockage local (localStorage)
                 window.localStorage.setItem('token', token);
@@ -52,3 +52,18 @@ logForm.addEventListener("submit", function (event) {
             console.error('Erreur lors de la requête:', error);
         });
 });
+/*redirige vers le mode user si pas admin */
+const tokenAdminJson = '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4"}'
+const tokenAdminObj = JSON.parse(tokenAdminJson)
+const tokenAdmin = tokenAdminObj.token;
+
+if (!tokenAdmin) {
+    const divHeader = document.querySelector('div.header__edit');
+    divHeader.remove();
+    const BtnOpenModal = document.querySelectorAll ('.edit__style');
+    BtnOpenModal.remove ();
+    const logoutElement = document.querySelector('ul li:nth-child(3)');
+    if (logoutElement.textContent === 'logout') {
+    logoutElement.textContent = 'login';
+    }
+};
