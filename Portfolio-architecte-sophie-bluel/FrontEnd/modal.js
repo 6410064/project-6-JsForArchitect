@@ -9,7 +9,7 @@ const openModal = function (e) {
     buttonClose.forEach(button => {
         button.addEventListener('click', closeModal);
     });
-    // j'ai ciblé la gallery car l'opacité ne sappliquait pas sur images
+   
 
     document.body.classList.add('modal-open')
 
@@ -153,9 +153,9 @@ buttonSendWork.addEventListener('click', async function (s) {
             // Réinitialiser le formulaire ou fermer la modale si nécessaire
             titleInput.value = '';
             categoryInput.value = '';
-            addWork.value = '';
             closeModal(); // Fermer la modale après l'ajout des photos
-        } else {
+         } 
+         else {
             // Gérer les erreurs de la requête
             const errorData = await response.json();
             console.error('Erreur lors de l\'ajout des photos:', errorData);

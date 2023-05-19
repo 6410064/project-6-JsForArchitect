@@ -1,4 +1,6 @@
-document.querySelector('#log__form').addEventListener("submit", function (event) {
+
+let logForm = document.getElementById('log__form')
+logForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
 
     let valid = true;
@@ -10,22 +12,17 @@ document.querySelector('#log__form').addEventListener("submit", function (event)
             break;
         }
     }
-
-    let data = {}; // Declare the data variable outside the if block
-
+    let data = {};
     if (valid) {
         let email = document.querySelector('#log__email').value;
         let password = document.querySelector('#log__password').value;
-
         // Préparation des données à envoyer dans la requête
         data = {
             email: email,
             password: password
         };
     }
-
     console.log(data);
-
     // Envoi de la requête POST à l'API
     fetch('http://localhost:5678/api/users/login', {
         method: 'POST',
@@ -38,16 +35,16 @@ document.querySelector('#log__form').addEventListener("submit", function (event)
         .then(result => {
             console.log(result);
             if (result.success) {
-                console.log(result.success);
                 // Récupération du token
                 let token = result.token;
                 let userId = result.userId;
                 // Stockage du token dans le stockage local (localStorage)
-                localStorage.setItem('token', token);
-                localStorage.setItem('userId', userId);
+                window.localStorage.setItem('token', token);
+                window.localStorage.setItem('userId', userId);
                 // Redirection vers le site après la validation des identifiants
                 window.location.href = "index.html";
-            } else {
+            }
+            else {
                 alert("Identifiants incorrects");
             }
         })
