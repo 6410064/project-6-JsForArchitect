@@ -121,32 +121,50 @@ arrow.addEventListener("click", function () {
     modalGallery1.style.display = "flex";
     modalGallery2.style.display = "none";
 });
-/*add pictures */
+
 const btnOpenModal2 = document.getElementById("modal__btn__add__picture");
 btnOpenModal2.addEventListener("click", function () {
     modalGallery1.style.display = "none";
     modalGallery2.style.display = "flex";
 });
 
+/*add pictures with modal form */
+
+
+
+
+const fileInput = document.querySelector('#add-picture');
+const formData = new FormData();
+
 const buttonSendWork = document.getElementById("modal__btn__valid__picture");
-buttonSendWork.addEventListener("click", async function (event) {
+buttonSendWork.addEventListener("submit", async function (event) {
     event.preventDefault();
-    console.log("launch")
     // Récupérer les données du formulaire
     const titleInput = document.getElementById("title");
     const categoryInput = document.getElementById("category");
-    const addWork = document.getElementById("js-form-add-picture");
-
+    if (category === "") {
+      categoryId = 0;
+    if (category === "Objets") {
+        categoryId = 1;
+    } else if (category === "Appartements") {
+        categoryId = 2;
+    } else if (category === "Hôtels & restaurants") {
+        categoryId = 3;
+    }
     const title = titleInput.value;
     const category = categoryInput.value;
 
-    // Effectuer une requête API pour ajouter les photos
-    const formData = new FormData();
+    
+    let categoryId = category
+    
+    // Assigner les categoryId en fonction de la catégorie sélectionnée
+    
+    
     formData.append("title", title);
-    formData.append("category", category);
+    formData.append("categoryId", categoryId);
+    formData.append("imageUrl", fileInput.files[0]);
 
     // Ajouter chaque fichier image au formData
-
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
@@ -156,19 +174,20 @@ buttonSendWork.addEventListener("click", async function (event) {
                 Accept: "application/json",
             },
         });
-        console.log(response);
-        if (response) {
-            // Les photos ont été ajoutées avec succès
-            // Réinitialiser le formulaire ou fermer la modale si nécessaire
-            titleInput.value = "";
-            categoryInput.value = "";
-            closeModal(); // Fermer la modale après l'ajout des photos
+
+
+        if (response.ok) {
+            titleInput.value = ""; // Réinitialiser le champ de titre
+            categoryInput.value = ""; // Réinitialiser le champ de catégorie
+            fileInput.value = ""; // Réinitialiser le champ de fichier
+            console.log("La requête a été traitée avec succès.");
         } else {
             // Gérer les erreurs de la requête
             const errorData = await response.json();
             console.error("Erreur lors de l'ajout des photos:", errorData);
         }
+        console.log("Réponse du serveur:", response);
     } catch (error) {
         console.error("Erreur lors de la requête d'ajout des photos:", error);
-    }
+    }}
 });
