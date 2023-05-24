@@ -337,6 +337,7 @@ footer nav ul {
 	font-weight: 400;
 	line-height: 16px;
 	letter-spacing: 0em;
+	
 }
 
 #header__btn__publish__changes {
@@ -355,6 +356,8 @@ footer nav ul {
 	margin-left: 10%;
 	position: relative;
 	top: 15px;
+	color: black;
+	
 }
 
 /*icon modify*/
@@ -364,20 +367,21 @@ footer nav ul {
 
 /*modal*/
 .modal__style {
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 560px;
-	height: 700px;
-	width: 43.75%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 60px 7% 48px 7%;
-	border-radius: 10px;
-	background-color: white;
-	box-sizing: border-box;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 560px;
+    height: 700px;
+    width: 42%;
+    min-width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px 7% 48px 7%;
+    border-radius: 10px;
+    background-color: white;
+    box-sizing: border-box;
 }
 
 .modal-open {
@@ -561,9 +565,17 @@ footer nav ul {
 	background: #f9f9f4;
 }
 
+.login-font-size {
+	font-weight: 600;
+}
+
 .header__log {
 	margin: 50px 0;
 	;
+}
+
+.header__link__edit {
+	color: #FFFFFF;
 }
 
 .section__log {
@@ -627,5 +639,6 @@ footer nav ul {
 }
 
 #section__log__forgot__pass {
+	cursor: pointer;
 	text-decoration-line: underline;
 }

@@ -128,66 +128,87 @@ btnOpenModal2.addEventListener("click", function () {
     modalGallery2.style.display = "flex";
 });
 
-/*add pictures with modal form */
 
+/*display image in modal before update */
 
-
-
+const imagePreviewContainer = document.getElementById("modal__form__add__pictures__style");
 const fileInput = document.querySelector('#add-picture');
-const formData = new FormData();
+fileInput.addEventListener("change", function () {
+const reader = new FileReader();
 
+    reader.onload = function (e) {
+        // Supprimez le contenu précédent de la div de prévisualisation de l'image
+        imagePreviewContainer.innerHTML = "";
+
+        ////check if file selected
+        if (fileInput.files && fileInput.files[0]) {
+            // create new <img> with URL of image
+            const imagePreview = document.createElement("img");
+            imagePreview.src = e.target.result;
+            imagePreview.alt = "Aperçu de l'image";
+            imagePreview.style.objectFit = "cover";
+            imagePreview.style.width = "100%";
+            imagePreview.style.height = "100%";
+            imagePreviewContainer.appendChild(imagePreview);
+        }
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
+});
+
+/*add pictures with modal form */
+const formModal = document.getElementById('modal__form')
 const buttonSendWork = document.getElementById("modal__btn__valid__picture");
-buttonSendWork.addEventListener("submit", async function (event) {
+
+formModal.addEventListener("submit", async function (event) {
     event.preventDefault();
-    // Récupérer les données du formulaire
+    const formData = new FormData(formModal);
     const titleInput = document.getElementById("title");
     const categoryInput = document.getElementById("category");
-    if (category === "") {
-      categoryId = 0;
-    if (category === "Objets") {
+    let categoryId = 0; // Valeur par défaut
+    const selectedCategory = categoryInput.value;
+    if (selectedCategory === "Objets") {
         categoryId = 1;
-    } else if (category === "Appartements") {
+    } else if (selectedCategory === "Appartements") {
         categoryId = 2;
-    } else if (category === "Hôtels & restaurants") {
+    } else if (selectedCategory === "Hôtels & restaurants") {
         categoryId = 3;
     }
-    const title = titleInput.value;
-    const category = categoryInput.value;
 
-    
-    let categoryId = category
-    
-    // Assigner les categoryId en fonction de la catégorie sélectionnée
-    
-    
-    formData.append("title", title);
-    formData.append("categoryId", categoryId);
-    formData.append("imageUrl", fileInput.files[0]);
+    if (selectedCategory === "Objets") {
+        formData.delete("category");
+        formData.append("categoryId", categoryId);
+        formData.append("imageUrl", fileInput.files[0]);
 
-    // Ajouter chaque fichier image au formData
-    try {
-        const response = await fetch("http://localhost:5678/api/works", {
-            method: "POST",
-            body: formData,
-            headers: {
-                Authorization: "Token " + token,
-                Accept: "application/json",
-            },
-        });
-
-
-        if (response.ok) {
-            titleInput.value = ""; // Réinitialiser le champ de titre
-            categoryInput.value = ""; // Réinitialiser le champ de catégorie
-            fileInput.value = ""; // Réinitialiser le champ de fichier
-            console.log("La requête a été traitée avec succès.");
-        } else {
-            // Gérer les erreurs de la requête
-            const errorData = await response.json();
-            console.error("Erreur lors de l'ajout des photos:", errorData);
+        for (const entry of formData.entries()) {
+            console.log(entry[0] + ':', entry[1]);
         }
-        console.log("Réponse du serveur:", response);
-    } catch (error) {
-        console.error("Erreur lors de la requête d'ajout des photos:", error);
-    }}
+        try {
+            const response = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    Authorization: "Token " + token,
+                    Accept: "application/json",
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            if (response.ok) {
+                titleInput.value = ""; // Réinitialiser le champ de titre
+                categoryId.value = ""; // Réinitialiser le champ de catégorie
+                fileInput.value = ""; // Réinitialiser le champ de fichier
+                console.log("La requête a été traitée avec succès.");
+            } else {
+                // Gérer les erreurs de la requête
+                const errorData = await response.json();
+                console.error("Erreur lors de l'ajout des photos:", errorData);
+            }
+            console.log("Réponse du serveur:", response);
+        }
+        catch (error) {
+            // Autres erreurs
+            console.error("Erreur lors de la requête d'ajout des photos:", error);
+        }
+    }
 });

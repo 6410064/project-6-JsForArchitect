@@ -1,4 +1,5 @@
 
+document.addEventListener('DOMContentLoaded', function() {
 let logForm = document.getElementById('log__form')
 logForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
@@ -55,20 +56,22 @@ logForm.addEventListener("submit", function (event) {
 /*redirige vers le mode user si pas admin */
 
 const tokenAdminJson = '{"userId": 1, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4"}';
-
 const tokenAdminObj = JSON.parse(tokenAdminJson);
 const tokenAdmin = tokenAdminObj.token;
 
-// if (tokenAdmin) {
-const divHeader = document.querySelector('div.header__edit');  
-divHeader.remove();
+if (tokenAdmin) {
+    const divHeader = document.querySelector('div.header__edit');
+    divHeader.remove();
 
-const BtnOpenModals = document.querySelectorAll('.edit__style');
-BtnOpenModals.forEach(btn => btn.remove());
+    const BtnOpenModals = document.querySelectorAll('.edit__style');
+    BtnOpenModals.forEach(btn => btn.remove());
 
-const logoutElement = document.querySelector('ul li:nth-child(3)');
-if (logoutElement.textContent === 'logout') {
-  logoutElement.textContent = 'login';
+    const logoutElement = document.querySelector('ul li:nth-child(3)');
+    if (logoutElement.textContent === 'logout') {
+        logoutElement.textContent = 'login';
+
+        const header = document.querySelector('header');
+        header.style.marginTop = '50px';
+    }
 }
-// }
-
+});
