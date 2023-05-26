@@ -19,17 +19,17 @@
 <body>
 	<!-- <script>window.location.href = "login.html"</script> -->
 	<header>
-		<div class="header__edit">
-			<a href="#modal"  class="header__link__edit edit__style modal-js">
+		<!-- <div class="header__edit">
+			<a href="#modal" class="header__link__edit edit__style modal-js">
 				<i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
 			<button id="header__btn__publish__changes">publier les changements</button>
-		</div>
+		</div> -->
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li>logout</li>
+				<li id="btn__login">login</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram">
 				</li>
 			</ul>
@@ -39,8 +39,8 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<a href="#modal" class="section__link__edit edit__style modal-js">
-					<i class="fa-regular fa-pen-to-square"></i>modifier</a>
+				<!-- <a href="#modal" class="section__link__edit edit__style modal-js">
+					<i class="fa-regular fa-pen-to-square"></i>modifier</a> -->
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -54,8 +54,10 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets <a href="#modal" class="section__title__edit edit__style modal-js">
-					<i class="fa-regular fa-pen-to-square"></i>modifier</a> </h2>
+			<h2>Mes Projets
+				 <!-- <a href="#modal" class="section__title__edit edit__style modal-js">
+					<i class="fa-regular fa-pen-to-square"></i>modifier</a> -->
+				 </h2>
 			<ul class="article__filter">
 				<li class="filter filter__selected" data-category-id="0">Tous</li>
 				<li class="filter" data-category-id="1">Objets</li>
@@ -111,9 +113,9 @@
 						<label for="category">Catégorie</label>
 						<select name="category" id="category">
 							<option value=""></option>
-							<option  value="Objets">Objets</option>
-							<option  value="Appartements">Appartements</option>
-							<option  value="Hôtels & restaurants">Hôtels & restaurants</option>
+							<option value="Objets">Objets</option>
+							<option value="Appartements">Appartements</option>
+							<option value="Hôtels & restaurants">Hôtels & restaurants</option>
 						</select>
 						<div class="modal__btn__form__valid">
 							<input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider" />
@@ -137,6 +139,7 @@
 	<script src="./api.js"></script>
 	<script src="./filter.js"></script>
 	<script src="./modal.js"></script>
+	<script src="./logout.js"></script>
 	<!-- <script src="./login.js"></script> -->
 </body>
 

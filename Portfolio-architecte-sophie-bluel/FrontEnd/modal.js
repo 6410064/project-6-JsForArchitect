@@ -134,7 +134,7 @@ btnOpenModal2.addEventListener("click", function () {
 const imagePreviewContainer = document.getElementById("modal__form__add__pictures__style");
 const fileInput = document.querySelector('#add-picture');
 fileInput.addEventListener("change", function () {
-const reader = new FileReader();
+    const reader = new FileReader();
 
     reader.onload = function (e) {
         // Supprimez le contenu précédent de la div de prévisualisation de l'image
@@ -162,9 +162,12 @@ const buttonSendWork = document.getElementById("modal__btn__valid__picture");
 
 formModal.addEventListener("submit", async function (event) {
     event.preventDefault();
-    const formData = new FormData(formModal);
+
+    const formData = new FormData();
+
     const titleInput = document.getElementById("title");
     const categoryInput = document.getElementById("category");
+
     let categoryId = 0; // Valeur par défaut
     const selectedCategory = categoryInput.value;
     if (selectedCategory === "Objets") {
@@ -175,40 +178,39 @@ formModal.addEventListener("submit", async function (event) {
         categoryId = 3;
     }
 
-    if (selectedCategory === "Objets") {
-        formData.delete("category");
-        formData.append("categoryId", categoryId);
-        formData.append("imageUrl", fileInput.files[0]);
-
-        for (const entry of formData.entries()) {
-            console.log(entry[0] + ':', entry[1]);
-        }
-        try {
-            const response = await fetch("http://localhost:5678/api/works", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    Authorization: "Token " + token,
-                    Accept: "application/json",
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            if (response.ok) {
-                titleInput.value = ""; // Réinitialiser le champ de titre
-                categoryId.value = ""; // Réinitialiser le champ de catégorie
-                fileInput.value = ""; // Réinitialiser le champ de fichier
-                console.log("La requête a été traitée avec succès.");
-            } else {
-                // Gérer les erreurs de la requête
-                const errorData = await response.json();
-                console.error("Erreur lors de l'ajout des photos:", errorData);
-            }
-            console.log("Réponse du serveur:", response);
-        }
-        catch (error) {
-            // Autres erreurs
-            console.error("Erreur lors de la requête d'ajout des photos:", error);
-        }
+    formData.append("category", categoryId);
+    formData.append("image", fileInput.files[0]);
+    formData.append('title', titleInput.value);
+    for (const value of formData.values()) {
+        console.log(value);
     }
+
+    try {
+        const response = await fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            body: formData,
+            headers: {
+                Authorization: "Token " + token,
+                Accept: "application/json",
+
+            },
+        });
+
+        if (response.ok) {
+            titleInput.value = ""; // Réinitialiser le champ de titre
+            categoryId.value = ""; // Réinitialiser le champ de catégorie
+            fileInput.value = ""; // Réinitialiser le champ de fichier
+            console.log("La requête a été traitée avec succès.");
+        } else {
+            // Gérer les erreurs de la requête
+            const errorData = await response.json();
+            console.error("Erreur lors de l'ajout des photos:", errorData);
+        }
+        console.log("Réponse du serveur:", response);
+    }
+    catch (error) {
+        // Autres erreurs
+        console.error("Erreur lors de la requête d'ajout des photos:", error);
+    }
+
 });
