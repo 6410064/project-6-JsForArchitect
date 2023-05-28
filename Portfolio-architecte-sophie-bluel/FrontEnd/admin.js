@@ -1,11 +1,13 @@
-if (result.token == true) {
-    document.addEventListener('DOMContentLoaded', function (z) {
-        z.preventDefault();
-        
-        
-        const header = document.querySelector('header');
-        header.style.marginTop = '100px';
-        const headerHtml = `
+console.log(token)
+
+if (token) {
+  document.addEventListener('DOMContentLoaded', function (z) {
+    z.preventDefault();
+
+
+    const header = document.querySelector('header');
+    header.style.marginTop = '100px';
+    const headerHtml = `
             <div class="header__edit">
                 <a href="#modal" class="header__link__edit edit__style modal-js">
                     <i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
@@ -13,24 +15,24 @@ if (result.token == true) {
             </div>
         `;
 
-        header.innerHTML = headerHtml + header.innerHTML;
+    header.innerHTML = headerHtml + header.innerHTML;
 
-        const figure = document.querySelector('section#introduction figure');
-        const sectionHtml = `
+    const figure = document.querySelector('section#introduction figure');
+    const sectionHtml = `
             <a href="#modal" class="section__link__edit edit__style modal-js">
                 <i class="fa-regular fa-pen-to-square"></i>modifier</a>
         `;
-        figure.innerHTML += sectionHtml;
-        
-        const h2 = document.querySelector('section#portfolio h2');
+    figure.innerHTML += sectionHtml;
 
-        const h2Html = `
+    const h2 = document.querySelector('section#portfolio h2');
+
+    const h2Html = `
         <a href="#modal" class="section__title__edit edit__style modal-js">
             <i class="fa-regular fa-pen-to-square"></i>modifier</a>
     `;
-        h2.insertAdjacentHTML('beforeend', h2Html);
-        
-        const modalContent = `
+    h2.insertAdjacentHTML('beforeend', h2Html);
+
+    const modalContent = `
     <aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
       style="display: none;">
       <div id="modal__gallery1" style="display: flex;">
@@ -76,11 +78,15 @@ if (result.token == true) {
     </aside>
   `;
 
-        const main = document.querySelector('main');
-        main.insertAdjacentHTML('beforeend', modalContent);
-    }
+    const main = document.querySelector('main');
+    main.insertAdjacentHTML('beforeend', modalContent);
 
-    )
-};
+    const logout = document.getElementById('btn__login')
+    logout.textContent = "logout";
+
+  
+  });
+}
+
 
 

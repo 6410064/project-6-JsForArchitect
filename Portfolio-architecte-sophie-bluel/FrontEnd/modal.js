@@ -1,4 +1,5 @@
 /*open-close modal*/
+
 let modal = null;
 const openModal = function (e) {
     e.preventDefault();
@@ -112,7 +113,7 @@ deleteArticleButton.addEventListener("click", function () {
         modalContainer.removeChild(modalContainer.firstChild);
     }
 });
-/*arrow ,preview, modal*/
+/*arrow modal preview */
 const arrow = document.querySelector(".arrow__left");
 const modalGallery1 = document.getElementById("modal__gallery1");
 const modalGallery2 = document.getElementById("modal__gallery2");

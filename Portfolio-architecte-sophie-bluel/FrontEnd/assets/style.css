@@ -442,6 +442,13 @@ footer nav ul {
 	cursor: pointer;
 }
 
+#btn__login {
+	text-decoration: none;	
+	cursor: pointer;
+	color: black;
+	font-size: 16.8px;
+	padding: 0 10px;
+}
 
 #modal__btn__delete__picture {
 	border: none;
@@ -566,12 +573,10 @@ footer nav ul {
 	background: #f9f9f4;
 }
 
-#btn__login {
-	text-decoration: none;
+.login-font-size {
 	font-weight: 600;
-	cursor: pointer;
-	color: black;
 }
+
 
 .header__log {
 	margin: 50px 0;
@@ -597,6 +602,7 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	text-align: left;
+	gap: 10px;
 }
 
 #log__email {
