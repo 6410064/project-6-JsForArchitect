@@ -233,6 +233,7 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	height: 507.68px;
 
 }
 
@@ -337,7 +338,7 @@ footer nav ul {
 	font-weight: 400;
 	line-height: 16px;
 	letter-spacing: 0em;
-	
+
 }
 
 #header__btn__publish__changes {
@@ -357,7 +358,7 @@ footer nav ul {
 	position: relative;
 	top: 15px;
 	color: black;
-	
+
 }
 
 /*icon modify*/
@@ -367,21 +368,21 @@ footer nav ul {
 
 /*modal*/
 .modal__style {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 560px;
-    height: 700px;
-    width: 42%;
-    min-width: 400px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 60px 7% 48px 7%;
-    border-radius: 10px;
-    background-color: white;
-    box-sizing: border-box;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 560px;
+	height: 700px;
+	width: 42%;
+	min-width: 400px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 60px 7% 48px 7%;
+	border-radius: 10px;
+	background-color: white;
+	box-sizing: border-box;
 }
 
 .modal-open {
@@ -566,8 +567,10 @@ footer nav ul {
 }
 
 #btn__login {
+	text-decoration: none;
 	font-weight: 600;
 	cursor: pointer;
+	color: black;
 }
 
 .header__log {

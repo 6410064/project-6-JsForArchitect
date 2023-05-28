@@ -19,17 +19,14 @@
 <body>
 	<!-- <script>window.location.href = "login.html"</script> -->
 	<header>
-		<!-- <div class="header__edit">
-			<a href="#modal" class="header__link__edit edit__style modal-js">
-				<i class="fa-regular fa-pen-to-square"></i>Mode édition</a>
-			<button id="header__btn__publish__changes">publier les changements</button>
-		</div> -->
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li id="btn__login">login</li>
+				<a href="login.html" id="btn__login">
+					<li>login</li>
+				</a>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram">
 				</li>
 			</ul>
@@ -39,8 +36,6 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<!-- <a href="#modal" class="section__link__edit edit__style modal-js">
-					<i class="fa-regular fa-pen-to-square"></i>modifier</a> -->
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -55,9 +50,7 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets
-				 <!-- <a href="#modal" class="section__title__edit edit__style modal-js">
-					<i class="fa-regular fa-pen-to-square"></i>modifier</a> -->
-				 </h2>
+			</h2>
 			<ul class="article__filter">
 				<li class="filter filter__selected" data-category-id="0">Tous</li>
 				<li class="filter" data-category-id="1">Objets</li>
@@ -81,53 +74,6 @@
 				<input type="submit" value="Envoyer">
 			</form>
 		</section>
-		<aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
-			style="display: none;">
-			<div id="modal__gallery1" style="display: flex;">
-				<h3 class="title__modal">Galerie photo</h3>
-				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
-				<div id="modal__container__edit">
-				</div>
-				<div id="modal__container__buttons">
-					<input id="modal__btn__add__picture" class="size__btn" type="submit" value="Ajouter une photo">
-					<button id="modal__btn__delete__picture">Supprimer la galerie</button>
-				</div>
-			</div>
-			<div id="modal__gallery2" style="display: none;">
-				<button class="arrow__left"><i class="fa-solid fa-arrow-left"></i></button>
-				<h3 class="title__modal">Ajout photo</h3>
-				<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
-				<div id="modal__container__form">
-					<form action="#" method="post" id="modal__form">
-						<div id="modal__form__add__pictures__style">
-							<i class="fa-sharp fa-regular fa-image"></i>
-							<label id="js-form-add-picture" for="add-picture" class="custom-file-upload">
-								<i class="fas fa-plus"></i> Ajouter une photo
-							</label>
-							<input type="file" name="add-picture" id="add-picture" accept=".png, .jpg"
-								style="display: none;" />
-							<p id="format__picture">jpg, png : 4mo max</p>
-						</div>
-						<label for="title">Titre</label>
-						<input type="text" name="title" id="title" />
-						<label for="category">Catégorie</label>
-						<select name="category" id="category">
-							<option value=""></option>
-							<option value="Objets">Objets</option>
-							<option value="Appartements">Appartements</option>
-							<option value="Hôtels & restaurants">Hôtels & restaurants</option>
-						</select>
-						<div class="modal__btn__form__valid">
-							<input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider" />
-						</div>
-					</form>
-				</div>
-			</div>
-
-			</div>
-			</div>
-		</aside>
-
 	</main>
 	<footer>
 		<nav>
@@ -140,7 +86,7 @@
 	<script src="./filter.js"></script>
 	<script src="./modal.js"></script>
 	<script src="./logout.js"></script>
-	<!-- <script src="./login.js"></script> -->
+	<script src="./admin.js"></script>
 </body>
 
 </html>
