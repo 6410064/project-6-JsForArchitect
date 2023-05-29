@@ -38,6 +38,7 @@ const displayImagesInModal = async () => {
     const allImages = await getImagesList();
 
     const modalContainer = document.querySelector("#modal__container__edit");
+    console.log(modalContainer)
     modalContainer.innerHTML = "";
 
     allImages.forEach((image) => {
@@ -71,7 +72,7 @@ const deleteArticleButton = document.getElementById(
     "modal__btn__delete__picture"
 );
 const modalContainer = document.querySelector("#modal__container__edit");
-const token = localStorage.getItem("token");
+// const token = localStorage.getItem("token");
 
 const deleteArticleFromServer = async (articleId) => {
 
