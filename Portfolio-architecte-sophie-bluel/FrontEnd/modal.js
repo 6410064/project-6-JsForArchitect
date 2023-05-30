@@ -38,7 +38,6 @@ const displayImagesInModal = async () => {
     const allImages = await getImagesList();
 
     const modalContainer = document.querySelector("#modal__container__edit");
-    console.log(modalContainer)
     modalContainer.innerHTML = "";
 
     allImages.forEach((image) => {
@@ -186,7 +185,8 @@ formModal.addEventListener("submit", async function (event) {
     for (const value of formData.values()) {
         console.log(value);
     }
-
+const createdElement = formData.values()
+createdElement.style.height = '132px' ;
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
@@ -194,10 +194,10 @@ formModal.addEventListener("submit", async function (event) {
             headers: {
                 Authorization: "Token " + token,
                 Accept: "application/json",
-
+                
             },
         });
-
+        
         if (response.ok) {
             titleInput.value = ""; // Réinitialiser le champ de titre
             categoryId.value = ""; // Réinitialiser le champ de catégorie
