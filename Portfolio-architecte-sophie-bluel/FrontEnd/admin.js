@@ -89,6 +89,9 @@ if (token) {
   const logout = document.getElementById('btn__login');
   logout.textContent = "logout";
   
+  /* modal */
+  /*open close */
+  
   const openModal = function (e) {
     e.preventDefault();
     const target = document.getElementById("modal");
