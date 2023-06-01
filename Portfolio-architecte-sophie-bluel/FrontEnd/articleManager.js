@@ -7,4 +7,3 @@
     //         (date.parse(a.publicationDate) < date.parse(b.publicationDate))
     //     });
     // }
-}
