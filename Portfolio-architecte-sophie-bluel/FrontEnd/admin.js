@@ -32,8 +32,8 @@ if (token) {
     const h2 = document.querySelector('section#portfolio h2');
 
     const h2Html = `
-        <div class="section__title__edit edit__style modal-js id="title-modify-button">
-            <i class="fa-regular fa-pen-to-square"></i>modifier</div>
+        <a class="section__title__edit edit__style modal-js id="title-modify-button">
+            <i class="fa-regular fa-pen-to-square"></i>modifier</a>
     `;
     h2.insertAdjacentHTML('beforeend', h2Html);
 
@@ -44,8 +44,7 @@ if (token) {
       <div id="modal__gallery1" style="display: flex;">
         <h3 class="title__modal">Galerie photo</h3>
         <button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
-        <div id="modal__container__edit">
-        </div>
+        <div id="modal__container__edit"></div>
         <div id="modal__container__buttons">
           <input id="modal__btn__add__picture" class="size__btn" type="submit" value="Ajouter une photo">
           <button id="modal__btn__delete__picture">Supprimer la galerie</button>
@@ -83,53 +82,35 @@ if (token) {
       </div>
     </aside>
   `;
-    const main = document.querySelector('main');
-    main.insertAdjacentHTML('beforeend', modalContent);
-
-
-    const logout = document.getElementById('btn__login')
-    logout.textContent = "logout";
-  });
-}
-
-
-
-
-
-
-
-
-/*open-close modal*/
-
-console.log(token)
-
-let modal = null;
-
-const openModal = function (e) {
+  
+  const main = document.querySelector('main');
+  main.insertAdjacentHTML('beforeend', modalContent);
+  
+  const logout = document.getElementById('btn__login');
+  logout.textContent = "logout";
+  
+  const openModal = function (e) {
     e.preventDefault();
     const target = document.getElementById("modal");
-    console.log(target)
     target.style.display = "flex";
     modal = target;
     const buttonClose = modal.querySelectorAll(".js-modal-close");
     buttonClose.forEach((button) => {
-        button.addEventListener("click", closeModal);
+      button.addEventListener("click", closeModal);
     });
-
+  
     document.body.classList.add("modal-open");
-};
+  };
+  
 
+  const btnOpenModalHeader = document.getElementById("header-modify-button");
+  btnOpenModalHeader.addEventListener("click", openModal);
+  
+  const btnOpenModalImage = document.getElementById("section-modify-button");
+  btnOpenModalImage.addEventListener("click", openModal);
 
-
-const btnOpenModalHeader = document.getElementById("header-modify-button")
-btnOpenModalHeader.addEventListener("click", openModal)
-
-const btnOpenModalImage = document.getElementById("section-modify-button")
-btnOpenModalImage.addEventListener("click", openModal)
-
-const btnOpenModalTitle = document.getElementById("title-modify-button")
-btnOpenModalTitle.addEventListener("click", openModal)
-
+  // const btnOpenModalTitle = document.getElementById("title-modify-button");
+  // btnOpenModalTitle.addEventListener("click", openModal);
 
 
 const closeModal = function (e) {
@@ -292,8 +273,7 @@ formModal.addEventListener("submit", async function (event) {
     formData.append("image", fileInput.files[0]);
     formData.append('title', titleInput.value);
    
-    const createdElement = formData.values()
-    createdElement.style.height = '132px';
+
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
@@ -324,3 +304,5 @@ formModal.addEventListener("submit", async function (event) {
 
 });
 
+  });
+}
