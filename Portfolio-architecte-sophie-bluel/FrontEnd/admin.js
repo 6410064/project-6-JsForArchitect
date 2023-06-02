@@ -32,9 +32,10 @@ if (token) {
     const h2 = document.querySelector('section#portfolio h2');
 
     const h2Html = `
-        <a class="section__title__edit edit__style modal-js id="title-modify-button">
-            <i class="fa-regular fa-pen-to-square"></i>modifier</a>
-    `;
+    <a class="section__title__edit edit__style modal-js" id="title-modify-button">
+        <i class="fa-regular fa-pen-to-square"></i>modifier</a>
+`;
+
     h2.insertAdjacentHTML('beforeend', h2Html);
 
 
@@ -92,19 +93,39 @@ if (token) {
   /* modal */
   /*open close */
   
-  const openModal = function (e) {
+// 
+
+const openModal = function (e) {
     e.preventDefault();
-    const target = document.getElementById("modal");
-    target.style.display = "flex";
-    modal = target;
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
     const buttonClose = modal.querySelectorAll(".js-modal-close");
     buttonClose.forEach((button) => {
       button.addEventListener("click", closeModal);
     });
   
     document.body.classList.add("modal-open");
+  
+   
+   
   };
   
+  const closeModal = function (e) {
+    e.preventDefault();
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+    const buttonClose = modal.querySelectorAll(".js-modal-close");
+    buttonClose.forEach((button) => {
+      button.removeEventListener("click", closeModal);
+    });
+    document.body.classList.remove("modal-open");
+  
+  
+
+    
+  };
+  
+
 
   const btnOpenModalHeader = document.getElementById("header-modify-button");
   btnOpenModalHeader.addEventListener("click", openModal);
@@ -112,19 +133,8 @@ if (token) {
   const btnOpenModalImage = document.getElementById("section-modify-button");
   btnOpenModalImage.addEventListener("click", openModal);
 
-  // const btnOpenModalTitle = document.getElementById("title-modify-button");
-  // btnOpenModalTitle.addEventListener("click", openModal);
-
-
-const closeModal = function (e) {
-    e.preventDefault();
-    modal.style.display = "none";
-    modal.removeEventListener("click", closeModal);
-    modal = null;
-
-    document.body.classList.remove("modal-open");
-};
-
+  const btnOpenModalTitle = document.getElementById("title-modify-button");
+  btnOpenModalTitle.addEventListener("click", openModal);
 
 /*display articles in modal*/
 
