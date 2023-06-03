@@ -19,9 +19,6 @@ if (token) {
 
     header.innerHTML = headerHtml + header.innerHTML;
 
-
-
-
     const figure = document.querySelector('section#introduction figure');
     const sectionHtml = `
             <a class="section__link__edit edit__style modal-js" id="section-modify-button">
@@ -35,9 +32,7 @@ if (token) {
     <a class="section__title__edit edit__style modal-js" id="title-modify-button">
         <i class="fa-regular fa-pen-to-square"></i>modifier</a>
 `;
-
     h2.insertAdjacentHTML('beforeend', h2Html);
-
 
     const modalContent = `
     <aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
@@ -169,12 +164,9 @@ if (token) {
         modalContainer.appendChild(figure);
       });
     };
-
     displayImagesInModal();
 
     /*function for delete articles */
-
-    const deleteArticleIcon = document.getElementsByClassName("fa-trash-can");
 
     const deleteArticleButton = document.getElementById(
       "modal__btn__delete__picture"
@@ -246,7 +238,7 @@ if (token) {
       const reader = new FileReader();
 
       reader.onload = function (e) {
-        // Supprimez le contenu précédent de la div de prévisualisation de l'image
+        // remove content
         imagePreviewContainer.innerHTML = "";
 
         ////check if file selected
@@ -267,13 +259,11 @@ if (token) {
 
     /*add pictures with modal form */
     const formModal = document.getElementById('modal__form')
-    const buttonSendWork = document.getElementById("modal__btn__valid__picture");
 
     formModal.addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const formData = new FormData();
-
       const titleInput = document.getElementById("title");
       const categoryInput = document.getElementById("category");
 
@@ -290,7 +280,6 @@ if (token) {
       formData.append("category", categoryId);
       formData.append("image", fileInput.files[0]);
       formData.append('title', titleInput.value);
-
 
       try {
         const response = await fetch("http://localhost:5678/api/works", {
@@ -319,8 +308,6 @@ if (token) {
         // Autres erreurs
         console.error("Erreur lors de la requête d'ajout des photos:", error);
       }
-
     });
-
   });
 }
