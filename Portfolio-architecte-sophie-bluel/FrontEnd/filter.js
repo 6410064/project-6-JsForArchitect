@@ -32,7 +32,7 @@ const displayImages = async (categoryId) => {
 
   filteredImages.forEach((image) => {
     document.querySelector(".gallery").innerHTML += `
-      <figure>
+      <figure class='displayed-image'>
         <img src="${image.imageUrl}" alt="${image.title}">
         <figcaption>${image.title}</figcaption>
       </figure>`;

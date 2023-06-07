@@ -1,5 +1,5 @@
 const token = localStorage.getItem("token");
-console.log(token);
+// console.log(token);
 
 if (token) {
   document.addEventListener('DOMContentLoaded', function (event) {
@@ -88,7 +88,6 @@ if (token) {
     /* modal */
     /*open close */
 
-    // 
     const openModal = function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -98,8 +97,13 @@ if (token) {
       buttonClose.forEach((button) => {
         button.addEventListener("click", closeModal);
       });
-
+      /*opacity du body quand modale s'ouvre*/
       document.body.classList.add("modal-open");
+
+      const displayedImages = document.getElementsByClassName('displayed-image');
+      for (i = 0; i < displayedImages.length; i++) {
+        displayedImages[i].style.opacity = 0.3;
+      }
     };
 
     const closeModal = function (e) {
@@ -111,7 +115,10 @@ if (token) {
       buttonClose.forEach((button) => {
         button.removeEventListener("click", closeModal);
       });
-
+      const displayedImages = document.getElementsByClassName('displayed-image');
+      for (i = 0; i < displayedImages.length; i++) {
+        displayedImages[i].style.opacity = 1;
+      }
       document.body.classList.remove("modal-open");
     };
 
@@ -172,7 +179,6 @@ if (token) {
       "modal__btn__delete__picture"
     );
     const modalContainer = document.querySelector("#modal__container__edit");
-    // const token = localStorage.getItem("token");
 
     const deleteArticleFromServer = async (articleId) => {
 
@@ -283,16 +289,17 @@ if (token) {
 
       try {
         const response = await fetch("http://localhost:5678/api/works", {
+
           method: "POST",
           body: formData,
           headers: {
             Authorization: "Token " + token,
             Accept: "application/json",
-
           },
         });
-
+          console.log(response)
         if (response.ok) {
+      
           titleInput.value = ""; // Réinitialiser le champ de titre
           categoryId.value = ""; // Réinitialiser le champ de catégorie
           fileInput.value = ""; // Réinitialiser le champ de fichier
