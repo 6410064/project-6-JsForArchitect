@@ -297,13 +297,31 @@ if (token) {
             Accept: "application/json",
           },
         });
-          console.log(response)
+        closeModal(event);
+        console.log(response)
+
         if (response.ok) {
-      
           titleInput.value = ""; // Réinitialiser le champ de titre
-          categoryId.value = ""; // Réinitialiser le champ de catégorie
+          categoryInput.value = ""; // Réinitialiser le champ de catégorie
           fileInput.value = ""; // Réinitialiser le champ de fichier
           console.log("La requête a été traitée avec succès.");
+
+
+          const newImg = document.createElement("img");
+          const newFigcaption = document.createElement("figcaption");
+
+          newImg.src = fileInput.value;
+          newImg.alt = titleInput.value;
+          newFigcaption.textContent = titleInput.value;
+
+
+          document.querySelector(".gallery").innerHTML += `
+          <figure class='displayed-image'>
+            <img src="${fileInput.value}" alt="${newFigcaption.value}">
+            <figcaption>${newFigcaption.value}</figcaption>
+          </figure>`;
+
+
         } else {
           // Gérer les erreurs de la requête
           const errorData = await response.json();
@@ -315,6 +333,7 @@ if (token) {
         // Autres erreurs
         console.error("Erreur lors de la requête d'ajout des photos:", error);
       }
+
     });
   });
 }
