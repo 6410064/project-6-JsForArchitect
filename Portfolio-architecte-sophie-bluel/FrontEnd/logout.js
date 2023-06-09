@@ -1,8 +1,9 @@
 
 
-const btnLogin = document.getElementById('btn__login');
+const loginButton = document.getElementById('btn__login');
 
-btnLogin.addEventListener('click', function () {
-    localStorage.removeItem(token);
-
-});
+loginButton.addEventListener('click', function() {
+    localStorage.removeItem("token"); // Supprime le token du localStorage
+    localStorage.clear(); // Vide tout le localStorage
+    window.location.href = 'login.html'; // Redirection vers login.html
+  });

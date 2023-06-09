@@ -236,13 +236,14 @@ if (token) {
       modalGallery2.style.display = "flex";
     });
 
-    /*display image in modal before update */
-
+    /*display image before update */
+    const btnValidUpdate = document.getElementById('modal__btn__valid__picture')
+    btnValidUpdate.style.backgroundColor = '#A7A7A7';
     const imagePreviewContainer = document.getElementById("modal__form__add__pictures__style");
     const fileInput = document.querySelector('#add-picture');
     fileInput.addEventListener("change", function () {
+      btnValidUpdate.style.backgroundColor = '#1D6154';
       const reader = new FileReader();
-
       reader.onload = function (e) {
         // remove content
         imagePreviewContainer.innerHTML = "";
@@ -313,16 +314,16 @@ if (token) {
           newImg.src = fileInput.value;
           newImg.alt = titleInput.value;
           newFigcaption.textContent = titleInput.value;
-
-
+          
           document.querySelector(".gallery").innerHTML += `
           <figure class='displayed-image'>
-            <img src="${fileInput.value}" alt="${newFigcaption.value}">
-            <figcaption>${newFigcaption.value}</figcaption>
+          <img src="${fileInput.value}" alt="${newFigcaption.value}">
+          <figcaption>${newFigcaption.value}</figcaption>
           </figure>`;
+          
+        }
 
-
-        } else {
+         else {
           // Gérer les erreurs de la requête
           const errorData = await response.json();
           console.error("Erreur lors de l'ajout des photos:", errorData);
