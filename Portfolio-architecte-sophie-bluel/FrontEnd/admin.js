@@ -143,7 +143,7 @@ if (token) {
     const btnOpenModalTitle = document.getElementById("title-modify-button");
     btnOpenModalTitle.addEventListener("click", openModal);
 
-    /*display articles in modal*/
+//     /*display articles in modal*/
 
     const displayImagesInModal = async () => {
       const allImages = await getImagesList();
@@ -220,7 +220,7 @@ if (token) {
         modalContainer.removeChild(modalContainer.firstChild);
       }
     });
-    /*arrow modal preview */
+//     /*arrow modal preview */
     const arrow = document.querySelector(".arrow__left");
     const modalGallery1 = document.getElementById("modal__gallery1");
     const modalGallery2 = document.getElementById("modal__gallery2");
@@ -336,5 +336,5 @@ if (token) {
       }
 
     });
-  });
-}
+   });
+ }
