@@ -196,6 +196,11 @@ if (token) {
         console.log(response);
         if (response.ok) {
           console.log("Article deleted from server");
+          // const imageContainer = document.querySelector(".displayed-image");
+          // if (imageContainer) {
+          //   imageContainer.style.display = "none" ; 
+          // }
+          window.location.reload()
         } else {
           console.error("Failed to delete article from server");
         }
@@ -315,12 +320,12 @@ if (token) {
           newImg.alt = titleInput.value;
           newFigcaption.textContent = titleInput.value;
           
-          document.querySelector(".gallery").innerHTML += `
-          <figure class='displayed-image'>
-          <img src="${fileInput.value}" alt="${newFigcaption.value}">
-          <figcaption>${newFigcaption.value}</figcaption>
-          </figure>`;
-          
+          // document.querySelector(".gallery").innerHTML += `
+          // <figure class='displayed-image'>
+          // <img src="${fileInput.value}" alt="${newFigcaption.value}">
+          // <figcaption>${newFigcaption.value}</figcaption>
+          // </figure>`;
+          window.location.reload();
         }
 
          else {
