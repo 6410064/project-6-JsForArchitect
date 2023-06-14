@@ -31,19 +31,17 @@ logForm.addEventListener("submit", function (event) {
 const handleLogin = async (identification) => {
     try {
         const response = await login(identification);
-        if (response.token) {
-            // Récupération du token
+        const result = await response.json(); // Ajout de cette ligne pour extraire les données JSON de la réponse
+
+        if (response.ok && result.token) { // Vérifier si la réponse est réussie et si le token existe
             const token = result.token;
-            let userId = result.userId;
-            // Stockage du token dans le stockage local (localStorage)
+            const userId = result.userId; // Correction de la variable userId
+
             window.localStorage.setItem('token', token);
             window.localStorage.setItem('userId', userId);
-            // Redirection vers le site après la validation des identifiants
             window.location.href = "index.html";
-
-        }
-        else {
-            alert("Erreur dans l/’identifiant ou le mot de passe");
+        } else {
+            alert("Erreur dans l'identifiant ou le mot de passe"); // Correction de l'apostrophe dans l'alerte
         }
     } catch (error) {
         console.error('Erreur lors de la requête:', error);
