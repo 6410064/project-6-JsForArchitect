@@ -24,34 +24,28 @@ logForm.addEventListener("submit", function (event) {
     }
     console.log(data);
     // Envoi de la requête POST à l'API
-    fetch('http://localhost:5678/api/users/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-        .then(response => response.json())
-        .then(result => {
+    handleLogin(data)
 
-            if (result.token) {
-                // Récupération du token
-                const token = result.token;
-                let userId = result.userId;
-                // Stockage du token dans le stockage local (localStorage)
-                window.localStorage.setItem('token', token);
-                window.localStorage.setItem('userId', userId);
-                // Redirection vers le site après la validation des identifiants
-                window.location.href = "index.html";
-
-            }
-            else {
-                alert("Erreur dans l/’identifiant ou le mot de passe");
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête:', error);
-        });
 });
 
+const handleLogin = async (identification) => {
+    try {
+        const response = await login(identification);
+        if (response.token) {
+            // Récupération du token
+            const token = result.token;
+            let userId = result.userId;
+            // Stockage du token dans le stockage local (localStorage)
+            window.localStorage.setItem('token', token);
+            window.localStorage.setItem('userId', userId);
+            // Redirection vers le site après la validation des identifiants
+            window.location.href = "index.html";
 
+        }
+        else {
+            alert("Erreur dans l/’identifiant ou le mot de passe");
+        }
+    } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+    }
+}

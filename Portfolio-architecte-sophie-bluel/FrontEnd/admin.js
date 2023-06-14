@@ -1,5 +1,4 @@
 const token = localStorage.getItem("token");
-// console.log(token);
 
 if (token) {
   document.addEventListener('DOMContentLoaded', function (event) {
@@ -111,6 +110,7 @@ if (token) {
       e.stopPropagation();
 
       modal.style.display = "none";
+
       const buttonClose = modal.querySelectorAll(".js-modal-close");
       buttonClose.forEach((button) => {
         button.removeEventListener("click", closeModal);
@@ -143,7 +143,7 @@ if (token) {
     const btnOpenModalTitle = document.getElementById("title-modify-button");
     btnOpenModalTitle.addEventListener("click", openModal);
 
-//     /*display articles in modal*/
+    //     /*display articles in modal*/
 
     const displayImagesInModal = async () => {
       const allImages = await getImagesList();
@@ -152,7 +152,7 @@ if (token) {
       modalContainer.innerHTML = "";
 
       allImages.forEach((image) => {
-        const figure = document.createElement("figure");
+        const figure = document.createElement("div");
         const img = document.createElement("img");
         const figcaption = document.createElement("figcaption");
         const deleteIcon = document.createElement("i");
@@ -180,26 +180,11 @@ if (token) {
     );
     const modalContainer = document.querySelector("#modal__container__edit");
 
-    const deleteArticleFromServer = async (articleId) => {
-
+    const handleDeleteImage = async (articleId) => {
       try {
-        const response = await fetch(
-          `http://localhost:5678/api/works/${articleId}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: "Token " + token,
-              Accept: "application/json",
-            },
-          }
-        );
-        console.log(response);
+        const response = await deleteImage(articleId);
         if (response.ok) {
           console.log("Article deleted from server");
-          // const imageContainer = document.querySelector(".displayed-image");
-          // if (imageContainer) {
-          //   imageContainer.style.display = "none" ; 
-          // }
           window.location.reload()
         } else {
           console.error("Failed to delete article from server");
@@ -214,7 +199,7 @@ if (token) {
         const articleElement = event.target.parentNode;
         const articleId = articleElement.dataset.articleId;
 
-        deleteArticleFromServer(articleId); // Supprimer l'article du serveur
+        handleDeleteImage(articleId); // Supprimer l'article du serveur
 
         articleElement.remove(); // Supprimer l'article de l'interface utilisateur
       }
@@ -225,7 +210,7 @@ if (token) {
         modalContainer.removeChild(modalContainer.firstChild);
       }
     });
-//     /*arrow modal preview */
+    //     /*arrow modal preview */
     const arrow = document.querySelector(".arrow__left");
     const modalGallery1 = document.getElementById("modal__gallery1");
     const modalGallery2 = document.getElementById("modal__gallery2");
@@ -294,17 +279,8 @@ if (token) {
       formData.append('title', titleInput.value);
 
       try {
-        const response = await fetch("http://localhost:5678/api/works", {
-
-          method: "POST",
-          body: formData,
-          headers: {
-            Authorization: "Token " + token,
-            Accept: "application/json",
-          },
-        });
+        const response = await addImage(formData);
         closeModal(event);
-        console.log(response)
 
         if (response.ok) {
           titleInput.value = ""; // Réinitialiser le champ de titre
@@ -319,16 +295,11 @@ if (token) {
           newImg.src = fileInput.value;
           newImg.alt = titleInput.value;
           newFigcaption.textContent = titleInput.value;
-          
-          // document.querySelector(".gallery").innerHTML += `
-          // <figure class='displayed-image'>
-          // <img src="${fileInput.value}" alt="${newFigcaption.value}">
-          // <figcaption>${newFigcaption.value}</figcaption>
-          // </figure>`;
+
           window.location.reload();
         }
 
-         else {
+        else {
           // Gérer les erreurs de la requête
           const errorData = await response.json();
           console.error("Erreur lors de l'ajout des photos:", errorData);
@@ -341,5 +312,5 @@ if (token) {
       }
 
     });
-   });
- }
+  });
+}
