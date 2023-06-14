@@ -1,32 +1,36 @@
 console.log(token)
 
-
 document.addEventListener('DOMContentLoaded', function () {
-    const loginButton = document.querySelector('#btn__login');
-    console.log(loginButton);
-    if (loginButton.textContent === "logout") {
-        loginButton.addEventListener('click', function (l) {
-            localStorage.removeItem(token); // Supprime le token du localStorage
-            localStorage.clear(); // Vide tout le localStorage
+    const btnLog = document.querySelector('#btn__login');
+    console.log(btnLog);
 
-            const headerEdit = document.getElementsByClassName('header__edit')[0];
-            headerEdit.style.display = 'none';
+    function btnLogout() {
+        localStorage.removeItem(token); // Supprime le token du localStorage
 
-            const header = document.querySelector('header');
-            header.style.marginTop = '50px';
+        const headerEdit = document.querySelector('.header__edit');
+        headerEdit.style.display = 'none';
 
-            const sectionModifyButton = document.getElementById('section-modify-button')
-            sectionModifyButton.style.display = 'none';
+        const header = document.querySelector('header');
+        header.style.marginTop = '50px';
 
-            const titleModifyButton = document.getElementById('title-modify-button')
-            titleModifyButton.style.display = 'none';
+        const sectionModifyButton = document.getElementById('section-modify-button');
+        sectionModifyButton.style.display = 'none';
 
-            loginButton.textContent = "login";
-        });
+        const titleModifyButton = document.getElementById('title-modify-button');
+        titleModifyButton.style.display = 'none';
+
+        btnLog.textContent = 'login';
+        btnLog.removeEventListener('click', btnLogout);
+        btnLog.addEventListener('click', btnLogin);
+    }
+
+    function btnLogin() {
+        window.location.href = 'login.html';
+    }
+
+    if (btnLog.textContent.trim() === 'logout') {
+        btnLog.addEventListener('click', btnLogout);
     } else {
-        loginButton.addEventListener('click', function () {
-            window.location.href = "login.html";
-        });
+        btnLog.addEventListener('click', btnLogin);
     }
 });
-
