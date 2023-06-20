@@ -4,7 +4,8 @@ logForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Empêche le rechargement de la page après la soumission du formulaire
 
     let valid = true;
-
+// valid pour vérifier que les champs soient valides
+// reportValidity pour déterminer si donnés peuvent etre envoyé a lapi
     for (let input of document.querySelectorAll("#log__form input")) {
         valid = valid && input.reportValidity();
 
@@ -12,6 +13,7 @@ logForm.addEventListener("submit", function (event) {
             break;
         }
     }
+    // pour stocker mail et mdp dans data
     let data = {};
     if (valid) {
         let email = document.querySelector('#log__email').value;
@@ -22,20 +24,20 @@ logForm.addEventListener("submit", function (event) {
             password: password
         };
     }
-    console.log(data);
     // Envoi de la requête POST à l'API
     handleLogin(data)
 
 });
-
+// envoi au serveur 
 const handleLogin = async (identification) => {
     try {
         const response = await login(identification);
-        const result = await response.json(); // Ajout de cette ligne pour extraire les données JSON de la réponse
-
-        if (response.ok && result.token) { // Vérifier si la réponse est réussie et si le token existe
+ // Ajout de cette ligne pour extraire les données JSON de la réponse
+        const result = await response.json();
+// Vérifier si la réponse est réussie et si le token existe
+        if (response.ok && result.token) { 
             const token = result.token;
-            const userId = result.userId; // Correction de la variable userId
+            const userId = result.userId; 
 
             window.localStorage.setItem('token', token);
             window.localStorage.setItem('userId', userId);

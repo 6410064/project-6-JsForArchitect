@@ -45,6 +45,8 @@ if (token) {
           <button id="modal__btn__delete__picture">Supprimer la galerie</button>
         </div>
       </div>
+
+
       <div id="modal__gallery2" style="display: none;">
         <button class="arrow__left"><i class="fa-solid fa-arrow-left"></i></button>
         <h3 class="title__modal">Ajout photo</h3>
@@ -96,9 +98,9 @@ if (token) {
       buttonClose.forEach((button) => {
         button.addEventListener("click", closeModal);
       });
-      /*opacity du body quand modale s'ouvre*/
+// modal open sert a appliquer l'opacity sur le body    
       document.body.classList.add("modal-open");
-
+/*opacity sur les images(qui ne s'appliquait pas) quand modale s'ouvre*/
       const displayedImages = document.getElementsByClassName('displayed-image');
       for (i = 0; i < displayedImages.length; i++) {
         displayedImages[i].style.opacity = 0.3;
@@ -123,11 +125,11 @@ if (token) {
     };
 
     const modal = document.getElementById("modal");
-    const openModalButtons = document.querySelectorAll(".open-modal-button");
 
-    openModalButtons.forEach((button) => {
-      button.addEventListener("click", openModal);
-    });
+    // const openModalButtons = document.querySelectorAll(".open-modal-button");
+    // openModalButtons.forEach((button) => {
+    //   button.addEventListener("click", openModal);
+    // });
 
     window.addEventListener("click", function (event) {
       if (event.target !== modal && !modal.contains(event.target)) {
@@ -143,7 +145,7 @@ if (token) {
     const btnOpenModalTitle = document.getElementById("title-modify-button");
     btnOpenModalTitle.addEventListener("click", openModal);
 
-    //     /*display articles in modal*/
+ /*display articles in modal*/
 
     const displayImagesInModal = async () => {
       const allImages = await getImagesList();
@@ -153,21 +155,23 @@ if (token) {
 
       allImages.forEach((image) => {
         const figure = document.createElement("div");
+        
         const img = document.createElement("img");
-        const figcaption = document.createElement("figcaption");
-        const deleteIcon = document.createElement("i");
-
         img.src = image.imageUrl;
-        img.alt = image.title;
 
-        deleteIcon.classList.add("fa-regular", "fa-trash-can");
-
+        const figcaption = document.createElement("figcaption");
         figcaption.textContent = "éditer";
 
+        const deleteIcon = document.createElement("i");
+        deleteIcon.classList.add("fa-regular", "fa-trash-can");
+        
+        // img.alt = image.title;
+                
         figure.appendChild(img);
         figure.appendChild(figcaption);
         figure.appendChild(deleteIcon);
         figure.dataset.articleId = image.id;
+        
         modalContainer.appendChild(figure);
       });
     };
@@ -175,9 +179,17 @@ if (token) {
 
     /*function for delete articles */
 
+    // pour supprimer toute la galerie
     const deleteArticleButton = document.getElementById(
       "modal__btn__delete__picture"
     );
+    deleteArticleButton.addEventListener("click", function () {
+      while (modalContainer.firstChild) {
+        modalContainer.removeChild(modalContainer.firstChild);
+      }
+    });
+
+    // pour supprimer 1 article avec l'icone suppr
     const modalContainer = document.querySelector("#modal__container__edit");
 
     const handleDeleteImage = async (articleId) => {
@@ -205,11 +217,7 @@ if (token) {
       }
     });
 
-    deleteArticleButton.addEventListener("click", function () {
-      while (modalContainer.firstChild) {
-        modalContainer.removeChild(modalContainer.firstChild);
-      }
-    });
+   
     //     /*arrow modal preview */
     const arrow = document.querySelector(".arrow__left");
     const modalGallery1 = document.getElementById("modal__gallery1");
@@ -288,7 +296,6 @@ if (token) {
           fileInput.value = ""; // Réinitialiser le champ de fichier
           console.log("La requête a été traitée avec succès.");
 
-
           const newImg = document.createElement("img");
           const newFigcaption = document.createElement("figcaption");
 
@@ -307,10 +314,8 @@ if (token) {
         console.log("Réponse du serveur:", response);
       }
       catch (error) {
-        // Autres erreurs
         console.error("Erreur lors de la requête d'ajout des photos:", error);
       }
-
     });
   });
 }

@@ -1,6 +1,9 @@
+
 let filters = Array.from(document.querySelectorAll(".filter"));
+// pour eviter les doublons dans le filtrage :
 let uniqueFilters = new Set(filters);
 
+// pour afficher les images en fonction de l'id
 uniqueFilters.forEach((filter) => {
   filter.addEventListener("click", async function () {
     let imagesId = parseInt(this.getAttribute("data-category-id"));
@@ -8,6 +11,7 @@ uniqueFilters.forEach((filter) => {
   });
 });
 
+// pour que la catégorie sur laquelle je clique devienne verte 
 const displayImages = async (categoryId) => {
   uniqueFilters.forEach((filterElement) => {
     const filterElementId = parseInt(filterElement.getAttribute("data-category-id"));
@@ -38,5 +42,5 @@ const displayImages = async (categoryId) => {
       </figure>`;
   });
 };
-
+// appelle par défault toutes les images
 displayImages(0);
