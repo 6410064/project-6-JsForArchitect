@@ -1,11 +1,11 @@
 const token = localStorage.getItem("token");
 
 if (token) {
-  document.addEventListener('DOMContentLoaded', function async (event) {
+  document.addEventListener("DOMContentLoaded", async function async(event) {
     event.preventDefault();
 
-    const header = document.querySelector('header');
-    header.style.marginTop = '100px';
+    const header = document.querySelector("header");
+    header.style.marginTop = "100px";
     const headerHtml = `
             <a class="header__edit">
                 <div class="header__link__edit edit__style modal-js" id="header-modify-button">
@@ -18,20 +18,26 @@ if (token) {
 
     header.innerHTML = headerHtml + header.innerHTML;
 
-    const figure = document.querySelector('section#introduction figure');
+    const figure = document.querySelector("section#introduction figure");
     const sectionHtml = `
             <a class="section__link__edit edit__style modal-js" id="section-modify-button">
                 <i class="fa-regular fa-pen-to-square"></i>modifier</a>
         `;
     figure.innerHTML += sectionHtml;
 
-    const h2 = document.querySelector('section#portfolio h2');
+    const h2 = document.querySelector("section#portfolio h2");
 
     const h2Html = `
     <a class="section__title__edit edit__style modal-js" id="title-modify-button">
         <i class="fa-regular fa-pen-to-square"></i>modifier</a>
 `;
-    h2.insertAdjacentHTML('beforeend', h2Html);
+    h2.insertAdjacentHTML("beforeend", h2Html);
+
+    const categoriesList = await getCategories();
+    console.log(
+      "🚀 ~ file: admin.js:5 ~ createModalContent ~ categoriesList:",
+      categoriesList
+    );
 
     const modalContent = `
     <aside id="modal" class="modal__style" aria-hidden="true" role="dialog" aria-labelledby="title__modal"
@@ -45,8 +51,6 @@ if (token) {
           <button id="modal__btn__delete__picture">Supprimer la galerie</button>
         </div>
       </div>
-
-
       <div id="modal__gallery2" style="display: none;">
         <button class="arrow__left"><i class="fa-solid fa-arrow-left"></i></button>
         <h3 class="title__modal">Ajout photo</h3>
@@ -66,10 +70,9 @@ if (token) {
             <input type="text" name="title" id="title" />
             <label for="category">Catégorie</label>
             <select name="category" id="category">
-              <option value=""></option>
-              <option value="Objets">Objets</option>
-              <option value="Appartements">Appartements</option>
-              <option value="Hôtels & restaurants">Hôtels & restaurants</option>
+            ${categoriesList.map((category) => {
+      return `<option value="${category.id}">${category.name}</option>`;
+    })}
             </select>
             <div class="modal__btn__form__valid">
               <input id="modal__btn__valid__picture" class="size__btn" type="submit" value="Valider" />
@@ -80,10 +83,10 @@ if (token) {
     </aside>
   `;
 
-    const main = document.querySelector('main');
-    main.insertAdjacentHTML('beforeend', modalContent);
+    const main = document.querySelector("main");
+    main.insertAdjacentHTML("beforeend", modalContent);
 
-    const logout = document.getElementById('btn__login');
+    const logout = document.getElementById("btn__login");
     logout.textContent = "logout";
 
     /* modal 1 */
@@ -98,10 +101,11 @@ if (token) {
       buttonClose.forEach((button) => {
         button.addEventListener("click", closeModal);
       });
-      // modal open sert a appliquer l'opacity sur le body    
+      // modal open sert a appliquer l'opacity sur le body
       document.body.classList.add("modal-open");
       /*opacity sur les images(qui ne s'appliquait pas) quand modale s'ouvre*/
-      const displayedImages = document.getElementsByClassName('displayed-image');
+      const displayedImages =
+        document.getElementsByClassName("displayed-image");
       for (i = 0; i < displayedImages.length; i++) {
         displayedImages[i].style.opacity = 0.3;
       }
@@ -117,7 +121,8 @@ if (token) {
       buttonClose.forEach((button) => {
         button.removeEventListener("click", closeModal);
       });
-      const displayedImages = document.getElementsByClassName('displayed-image');
+      const displayedImages =
+        document.getElementsByClassName("displayed-image");
       for (i = 0; i < displayedImages.length; i++) {
         displayedImages[i].style.opacity = 1;
       }
@@ -192,7 +197,7 @@ if (token) {
         const response = await deleteImage(articleId);
         if (response.ok) {
           console.log("Article deleted from server");
-          window.location.reload()
+          window.location.reload();
         } else {
           console.error("Failed to delete article from server");
         }
@@ -224,7 +229,7 @@ if (token) {
       modalGallery2.style.display = "none";
     });
 
-    // boutton ajouter une photo 
+    // boutton ajouter une photo
     const btnOpenModal2 = document.getElementById("modal__btn__add__picture");
     btnOpenModal2.addEventListener("click", function () {
       modalGallery1.style.display = "none";
@@ -232,24 +237,27 @@ if (token) {
     });
 
     /*afficher image dans modal 2 */
-    const btnValidUpdate = document.getElementById('modal__btn__valid__picture')
-    btnValidUpdate.style.backgroundColor = '#A7A7A7';
+    const btnValidUpdate = document.getElementById(
+      "modal__btn__valid__picture"
+    );
+    btnValidUpdate.style.backgroundColor = "#A7A7A7";
 
-    const imagePreviewContainer = document.getElementById("modal__form__add__pictures__style");
+    const imagePreviewContainer = document.getElementById(
+      "modal__form__add__pictures__style"
+    );
     // btn add photo
-    const fileInput = document.querySelector('#add-picture');
+    const fileInput = document.querySelector("#add-picture");
 
     fileInput.addEventListener("change", function () {
-      btnValidUpdate.style.backgroundColor = '#1D6154';
+      btnValidUpdate.style.backgroundColor = "#1D6154";
       // FileReader sert a lire le fichier en async
       const reader = new FileReader();
 
-      // vide le contenaire avant d'afficher l'image 
+      // vide le contenaire avant d'afficher l'image
       reader.onload = function (e) {
         imagePreviewContainer.innerHTML = "";
 
         if (fileInput.files && fileInput.files[0]) {
-
           const imagePreview = document.createElement("img");
 
           imagePreview.src = e.target.result;
@@ -260,54 +268,31 @@ if (token) {
           imagePreviewContainer.appendChild(imagePreview);
         }
       };
-      // lis et convertis le fichier en une url de données 
+      // lis et convertis le fichier en une url de données
       reader.readAsDataURL(fileInput.files[0]);
     });
 
     /*add pictures form */
-    const formModal = document.getElementById('modal__form');
+    const formModal = document.getElementById("modal__form");
 
-formModal.addEventListener("submit", async function(event) {
-  event.preventDefault();
+    formModal.addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-  const formData = new FormData();
-  const titleInput = document.getElementById("title");
-  const categoryInput = document.getElementById("category");
-  const getCategories = await getCategories();
-  
-  const options = Array.from(categoryInput.options);
-  const categories = options.map(option => option.value);
+      const formData = new FormData();
+      const titleInput = document.getElementById("title");
+      const categoryInput = document.getElementById("category");
 
- 
-  const selectedCategory = categoryInput.value;
+      const selectedCategory = categoryInput.value;
 
-  for (let i = 0; i < getCategories.length; i++) {
-    if (selectedCategory === getCategories[i].name) {
-      categories = getCategories[i].id;
-      break;
-    }
-  }
-
-        // let categoryId = 0; 
-        // const selectedCategory = categoryInput.value;
-        // if (selectedCategory === "Objets") {
-        //   categoryId = 1;
-        // } else if (selectedCategory === "Appartements") {
-        //   categoryId = 2;
-        // } else if (selectedCategory === "Hôtels & restaurants") {
-        //   categoryId = 3;
-        // }
-
-        formData.append("category", categories);
+      formData.append("category", selectedCategory);
       formData.append("image", fileInput.files[0]);
-      formData.append('title', titleInput.value);
+      formData.append("title", titleInput.value);
 
       try {
         const response = await addImage(formData);
         closeModal(event);
 
         if (response.ok) {
-
           titleInput.value = "";
           categoryInput.value = "";
           fileInput.value = "";
@@ -321,16 +306,13 @@ formModal.addEventListener("submit", async function(event) {
           newFigcaption.textContent = titleInput.value;
 
           window.location.reload();
-        }
-
-        else {
+        } else {
           // Gérer les erreurs de la requête
           const errorData = await response.json();
           console.error("Erreur lors de l'ajout des photos:", errorData);
         }
         console.log("Réponse du serveur:", response);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Erreur lors de la requête d'ajout des photos:", error);
       }
     });
