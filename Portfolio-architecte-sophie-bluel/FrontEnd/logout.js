@@ -1,8 +1,6 @@
-console.log(token)
 
 document.addEventListener('DOMContentLoaded', function () {
-    const btnLog = document.querySelector('#btn__login');
-    console.log(btnLog);
+    const btnLog = document.querySelector('#btn__login'); 
 
     function btnLogout() {
         localStorage.removeItem(token); // Supprime le token du localStorage

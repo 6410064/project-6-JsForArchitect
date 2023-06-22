@@ -8,9 +8,14 @@ const login = async (identification) => {
   });
   return response
 }
-/*filter */
+
 const getImagesList = async () => {
   const response = await fetch("http://localhost:5678/api/works");
+  return await response.json();
+}
+
+const getCategories = async () => {
+  const response = await fetch("http://localhost:5678/api/categories");
   return await response.json();
 }
 
